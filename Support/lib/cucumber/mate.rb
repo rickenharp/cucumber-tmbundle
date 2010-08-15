@@ -25,7 +25,13 @@ if ENV['TM_PROJECT_DIRECTORY']
     $LOAD_PATH.unshift(rspec_lib)
   end
 end
-require 'rspec'
+
+begin
+  require 'rspec'
+rescue LoadError
+  require 'spec'
+end
+
 
 $LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..')))
 require "cucumber/mate/feature_helper"
